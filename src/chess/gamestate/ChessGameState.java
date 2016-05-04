@@ -97,7 +97,6 @@ public class ChessGameState extends GameState{
 	 */
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
 		if(actionState == 4){
 			mouseClicked(0,0);
 		}

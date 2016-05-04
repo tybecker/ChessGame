@@ -258,7 +258,9 @@ public class King implements ChessPiece{
 	 * @param ySquare The x number of the square, from 0 to 7, bottom to top
 	 * @return A boolean value, true if the square is threatened, false otherwise.
 	 */
-	public boolean isThreatened(ChessBoard board, int xSquare, int ySquare){
+	public boolean isThreatened(ChessBoard inputBoard, int xSquare, int ySquare){
+		ChessBoard board = inputBoard.copy();
+		board.getSquare(xLocation, yLocation).removePiece();
 		ChessSquare square = board.getSquare(xSquare, ySquare);
 		
 		//Logic for checking for enemy pawns
