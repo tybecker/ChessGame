@@ -11,9 +11,8 @@ Features not implemented:
 5. The AI needs to learn to make a pawn turn into something else when it reaches the far side of the board.
 
 Bugs:
-1. The king can move into a spot that is threatened, provided that spot isn't threatened before it moved there.
-2. Provided the king does not move, moves can be made which leave a king in check.
-3. When the AI is out of moves, it throws a bunch of nullpointerexceptions and freezes the game.
+1. Provided the king does not move, moves can be made which leave a king in check.
+2. When the AI is out of moves, it throws a bunch of nullpointerexceptions and freezes the game.
 
 Credits:
 1. I, Benjamin Tyler Becker, wrote most of the code.  I'm quite proud of that.
