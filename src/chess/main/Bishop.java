@@ -83,8 +83,10 @@ public class Bishop implements ChessPiece{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare() - 1);
 			}
 			if(currentSquare.hasPiece()){
@@ -92,15 +94,19 @@ public class Bishop implements ChessPiece{
 					movedBoard = board.copy();
 					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 			}
 		}
 		
@@ -112,8 +118,10 @@ public class Bishop implements ChessPiece{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare() - 1);
 			}
 			if(currentSquare.hasPiece()){
@@ -121,15 +129,19 @@ public class Bishop implements ChessPiece{
 					movedBoard = board.copy();
 					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 			}
 		}
 		
@@ -141,8 +153,10 @@ public class Bishop implements ChessPiece{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare() + 1);
 			}
 			if(currentSquare.hasPiece()){
@@ -150,15 +164,19 @@ public class Bishop implements ChessPiece{
 					movedBoard = board.copy();
 					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 			}
 		}
 		
@@ -170,8 +188,10 @@ public class Bishop implements ChessPiece{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare() + 1);
 			}
 			if(currentSquare.hasPiece()){
@@ -179,15 +199,19 @@ public class Bishop implements ChessPiece{
 					movedBoard = board.copy();
 					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				movedBoard = board.copy();
 				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 			}
 		}
 		
@@ -332,22 +356,39 @@ public class Bishop implements ChessPiece{
 		
 		ChessSquare currentSquare;
 		
+		ChessBoard movedBoard;
+		
 		//Get all movements down and to the left.
 		if(xLocation > 0 && yLocation > 0){
 			currentSquare = board.getSquare(xLocation - 1, yLocation - 1);
 			while(currentSquare.getXSquare() > 0 && currentSquare.getYSquare() > 0 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare() - 1);
-				currentPoint++;
-			}
-			if(currentSquare.hasPiece()){
-				if(currentSquare.getPiece().getColor() != color){
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
+				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare() - 1);
+			}
+			if(currentSquare.hasPiece()){
+				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
 			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 			}
 		}
 		
@@ -355,18 +396,33 @@ public class Bishop implements ChessPiece{
 		if(xLocation < 7 && yLocation > 0){
 			currentSquare = board.getSquare(xLocation + 1, yLocation - 1);
 			while(currentSquare.getXSquare() < 7 && currentSquare.getYSquare() > 0 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare() - 1);
-				currentPoint++;
-			}
-			if(currentSquare.hasPiece()){
-				if(currentSquare.getPiece().getColor() != color){
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
+				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare() - 1);
+			}
+			if(currentSquare.hasPiece()){
+				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
 			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 			}
 		}
 		
@@ -374,18 +430,33 @@ public class Bishop implements ChessPiece{
 		if(xLocation > 0 && yLocation < 7){
 			currentSquare = board.getSquare(xLocation - 1, yLocation + 1);
 			while(currentSquare.getXSquare() > 0 && currentSquare.getYSquare() < 7 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare() + 1);
-				currentPoint++;
-			}
-			if(currentSquare.hasPiece()){
-				if(currentSquare.getPiece().getColor() != color){
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
+				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare() + 1);
+			}
+			if(currentSquare.hasPiece()){
+				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
 			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 			}
 		}
 		
@@ -393,18 +464,33 @@ public class Bishop implements ChessPiece{
 		if(xLocation < 7 && yLocation < 7){
 			currentSquare = board.getSquare(xLocation + 1, yLocation + 1);
 			while(currentSquare.getXSquare() < 7 && currentSquare.getYSquare() < 7 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare() + 1);
-				currentPoint++;
-			}
-			if(currentSquare.hasPiece()){
-				if(currentSquare.getPiece().getColor() != color){
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
+				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare() + 1);
+			}
+			if(currentSquare.hasPiece()){
+				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
 			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(new Bishop(color, currentSquare.getXSquare(), currentSquare.getYSquare()));
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 			}
 		}
 		
@@ -429,4 +515,33 @@ public class Bishop implements ChessPiece{
 		return "bishop";
 	}
 
+	/**
+	 * This will find out if the king is threatened in any given case.  This
+	 * does not strike me as the best way to do things.  Still, whatever
+	 * serves the purpose.
+	 * 
+	 * @param board The board with the layout to be considered.
+	 * @return Whether or not the king is threatened in this layout.
+	 */
+	public boolean kingThreatened(ChessBoard board){
+		King king = null;
+		
+		//First... find the king.
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(board.getSquare(i, j).hasPiece()){
+					if(board.getSquare(i, j).getPiece().getColor() == color && board.getSquare(i, j).getPiece().getDescription().equalsIgnoreCase("king")){
+						king = (King)board.getSquare(i, j).getPiece();
+					}
+				}
+			}
+		}
+		
+		if(king != null){
+			if(king.isThreatened(board, king.getXPosition(), king.getYPosition())){
+				return true;
+			}
+		}
+		return false;
+	}
 }

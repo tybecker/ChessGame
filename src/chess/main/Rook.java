@@ -73,16 +73,21 @@ public class Rook implements ChessPiece{
 		
 		ChessSquare currentSquare;
 		
+		ChessBoard movedBoard;
+		
 		//For moving left, if there is left to move.
 		if(xLocation > 0){
 			currentSquare = board.getSquare(xLocation - 1, yLocation);
 			
 			//Add moves as long as the space to the left is empty, and not the final square.
 			while(currentSquare.getXSquare() > 0 && board.getSquare(currentSquare.getXSquare(), yLocation).hasPiece() == false){
-				moveSet[currentMove] = board.copy();
-				moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-				moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-				currentMove++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, yLocation);
 			}
 			
@@ -91,23 +96,32 @@ public class Rook implements ChessPiece{
 			if(currentSquare.getXSquare() == 0){
 				if(currentSquare.hasPiece()){
 					if(color != currentSquare.getPiece().getColor()){
-						moveSet[currentMove] = board.copy();
-						moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-						moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-						currentMove++;
+						movedBoard = board.copy();
+						movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}else{
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				if(color != currentSquare.getPiece().getColor()){
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}
 		}
@@ -118,33 +132,45 @@ public class Rook implements ChessPiece{
 			currentSquare = board.getSquare(xLocation + 1, yLocation);
 			
 			while(currentSquare.getXSquare() < 7 && board.getSquare(currentSquare.getXSquare(), yLocation).hasPiece() == false){
-				moveSet[currentMove] = board.copy();
-				moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-				moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-				currentMove++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, yLocation);
 			}
 			
 			if(currentSquare.getXSquare() == 7){
 				if(currentSquare.hasPiece()){
 					if(color != currentSquare.getPiece().getColor()){
-						moveSet[currentMove] = board.copy();
-						moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-						moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-						currentMove++;
+						movedBoard = board.copy();
+						movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}else{
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				if(color != currentSquare.getPiece().getColor()){
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), yLocation).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}
 		}
@@ -155,33 +181,45 @@ public class Rook implements ChessPiece{
 			currentSquare = board.getSquare(xLocation, yLocation - 1);
 			
 			while(currentSquare.getYSquare() > 0 && board.getSquare(xLocation, currentSquare.getYSquare()).hasPiece() == false){
-				moveSet[currentMove] = board.copy();
-				moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-				moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-				currentMove++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(xLocation, currentSquare.getYSquare() - 1);
 			}
 			
 			if(currentSquare.getYSquare() == 0){
 				if(currentSquare.hasPiece()){
 					if(color != currentSquare.getPiece().getColor()){
-						moveSet[currentMove] = board.copy();
-						moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-						moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-						currentMove++;
+						movedBoard = board.copy();
+						movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}else{
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				if(color != currentSquare.getPiece().getColor()){
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}
 		}
@@ -192,33 +230,45 @@ public class Rook implements ChessPiece{
 			currentSquare = board.getSquare(xLocation, yLocation + 1);
 			
 			while(currentSquare.getYSquare() < 7 && board.getSquare(xLocation, currentSquare.getYSquare()).hasPiece() == false){
-				moveSet[currentMove] = board.copy();
-				moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-				moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-				currentMove++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 				currentSquare = board.getSquare(xLocation, currentSquare.getYSquare() + 1);
 			}
 			
 			if(currentSquare.getYSquare() == 7){
 				if(currentSquare.hasPiece()){
 					if(color != currentSquare.getPiece().getColor()){
-						moveSet[currentMove] = board.copy();
-						moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-						moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-						currentMove++;
+						movedBoard = board.copy();
+						movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}else{
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}else{
 				if(color != currentSquare.getPiece().getColor()){
-					moveSet[currentMove] = board.copy();
-					moveSet[currentMove].getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
-					moveSet[currentMove].getSquare(xLocation, yLocation).removePiece();
-					currentMove++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}
 		}
@@ -363,75 +413,141 @@ public class Rook implements ChessPiece{
 		
 		ChessSquare currentSquare;
 		
+		ChessBoard movedBoard;
+		
+		//Statements for moving left.
 		if(xLocation > 0){
 			currentSquare = board.getSquare(xLocation - 1, yLocation);
 			while(currentSquare.getXSquare() > 0 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() - 1, currentSquare.getYSquare());
 			}
 			if(currentSquare.hasPiece()){
 				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
+			}else{
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
-			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
 			}
 		}
 		
+		//Statements for moving right.
 		if(xLocation < 7){
 			currentSquare = board.getSquare(xLocation + 1, yLocation);
 			while(currentSquare.getXSquare() < 7 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare() + 1, currentSquare.getYSquare());
 			}
 			if(currentSquare.hasPiece()){
 				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
+			}else{
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
-			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
 			}
 		}
 		
+		//Statements for moving down.
 		if(yLocation > 0){
 			currentSquare = board.getSquare(xLocation, yLocation - 1);
 			while(currentSquare.getYSquare() > 0 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare() - 1);
 			}
 			if(currentSquare.hasPiece()){
 				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
+			}else{
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
-			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
 			}
 		}
 		
+		//Statements for moving up
 		if(yLocation < 7){
 			currentSquare = board.getSquare(xLocation, yLocation + 1);
 			while(currentSquare.getYSquare() < 7 && currentSquare.hasPiece() == false){
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
+					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+					currentPoint++;
+				}
 				currentSquare = board.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare() + 1);
 			}
 			if(currentSquare.hasPiece()){
 				if(currentSquare.getPiece().getColor() != color){
+					movedBoard = board.copy();
+					movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
+						currentPoint++;
+					}
+				}
+			}else{
+				movedBoard = board.copy();
+				movedBoard.getSquare(currentSquare.getXSquare(), currentSquare.getYSquare()).setPiece(this.copy());
+				movedBoard.getSquare(xLocation, yLocation).removePiece();
+				if(!kingThreatened(movedBoard)){
 					movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
 					currentPoint++;
 				}
-			}else{
-				movePoints[currentPoint] = new Point(currentSquare.getXSquare(), currentSquare.getYSquare());
-				currentPoint++;
 			}
 		}
 		
@@ -456,4 +572,33 @@ public class Rook implements ChessPiece{
 		return "rook";
 	}
 
+	/**
+	 * This will find out if the king is threatened in any given case.  This
+	 * does not strike me as the best way to do things.  Still, whatever
+	 * serves the purpose.
+	 * 
+	 * @param board The board with the layout to be considered.
+	 * @return Whether or not the king is threatened in this layout.
+	 */
+	public boolean kingThreatened(ChessBoard board){
+		King king = null;
+		
+		//First... find the king.
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(board.getSquare(i, j).hasPiece()){
+					if(board.getSquare(i, j).getPiece().getColor() == color && board.getSquare(i, j).getPiece().getDescription().equalsIgnoreCase("king")){
+						king = (King)board.getSquare(i, j).getPiece();
+					}
+				}
+			}
+		}
+		
+		if(king != null){
+			if(king.isThreatened(board, king.getXPosition(), king.getYPosition())){
+				return true;
+			}
+		}
+		return false;
+	}
 }

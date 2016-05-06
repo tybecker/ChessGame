@@ -94,14 +94,18 @@ public class Pawn implements ChessPiece{
 					movedBoard = board.copy();
 					movedBoard.getSquare(xLocation, yLocation - 1).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}else{
 					movedBoard = board.copy();
 					movedBoard.getSquare(xLocation, yLocation - 1).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}
 			//Two space move from initial position
@@ -109,8 +113,10 @@ public class Pawn implements ChessPiece{
 				movedBoard = board.copy();
 				movedBoard.getSquare(xLocation, yLocation - 2).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 			}
 			//Forward left move, should only be available if an enemy piece is in that place.
 			if(xLocation > 0 && board.getSquare(xLocation - 1, yLocation - 1).hasPiece()){
@@ -121,14 +127,18 @@ public class Pawn implements ChessPiece{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation - 1, yLocation - 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation - 1, yLocation - 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 					
 				}
@@ -142,14 +152,18 @@ public class Pawn implements ChessPiece{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation + 1, yLocation - 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation + 1, yLocation - 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}
 			}
@@ -161,22 +175,28 @@ public class Pawn implements ChessPiece{
 					movedBoard = board.copy();
 					movedBoard.getSquare(xLocation, yLocation + 1).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}else{
 					movedBoard = board.copy();
 					movedBoard.getSquare(xLocation, yLocation + 1).setPiece(this.copy());
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
-					moveSet[currentMove] = movedBoard;
-					currentMove++;
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}
 			}
 			if(yLocation == 1 && board.getSquare(xLocation, yLocation + 1).hasPiece() == false && board.getSquare(xLocation, yLocation + 2).hasPiece() == false){
 				movedBoard = board.copy();
 				movedBoard.getSquare(xLocation, yLocation + 2).setPiece(this.copy());
 				movedBoard.getSquare(xLocation, yLocation).removePiece();
-				moveSet[currentMove] = movedBoard;
-				currentMove++;
+				if(!kingThreatened(movedBoard)){
+					moveSet[currentMove] = movedBoard;
+					currentMove++;
+				}
 			}
 			if(xLocation > 0 && board.getSquare(xLocation - 1, yLocation + 1).hasPiece()){
 				if(board.getSquare(xLocation - 1, yLocation + 1).getPiece().getColor() == 0){
@@ -186,14 +206,18 @@ public class Pawn implements ChessPiece{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation - 1, yLocation + 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation - 1, yLocation + 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}
 			}
@@ -205,14 +229,18 @@ public class Pawn implements ChessPiece{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation + 1, yLocation + 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation + 1, yLocation + 1).setPiece(this.copy());
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
-						moveSet[currentMove] = movedBoard;
-						currentMove++;
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}
 				}
 			}
@@ -362,31 +390,53 @@ public class Pawn implements ChessPiece{
 		
 		ChessSquare currentSquare;
 		
+		ChessBoard movedBoard;
+		
 		if(color == 0){
 			if(yLocation > 0){
 				if(board.getSquare(xLocation, yLocation - 1).hasPiece() == false){
-					movePoints[currentPoint] = new Point(xLocation, yLocation - 1);
-					currentPoint++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(xLocation, yLocation - 1).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(xLocation, yLocation - 1);
+						currentPoint++;
+					}
 					if(yLocation == 6){
 						if(board.getSquare(xLocation, yLocation - 2).hasPiece() == false){
-							movePoints[currentPoint] = new Point(xLocation, yLocation - 2);
-							currentPoint++;
+							movedBoard = board.copy();
+							movedBoard.getSquare(xLocation, yLocation - 2).setPiece(this.copy());
+							movedBoard.getSquare(xLocation, yLocation).removePiece();
+							if(!kingThreatened(movedBoard)){
+								movePoints[currentPoint] = new Point(xLocation, yLocation - 2);
+								currentPoint++;
+							}
 						}
 					}
 				}
 				if(xLocation < 7){
 					if(board.getSquare(xLocation + 1, yLocation - 1).hasPiece()){
 						if(board.getSquare(xLocation + 1, yLocation - 1).getPiece().getColor() != color){
-							movePoints[currentPoint] = new Point(xLocation + 1, yLocation - 1);
-							currentPoint++;
+							movedBoard = board.copy();
+							movedBoard.getSquare(xLocation + 1, yLocation - 1).setPiece(this.copy());
+							movedBoard.getSquare(xLocation, yLocation).removePiece();
+							if(!kingThreatened(movedBoard)){
+								movePoints[currentPoint] = new Point(xLocation + 1, yLocation - 1);
+								currentPoint++;
+							}
 						}
 					}
 				}
 				if(xLocation > 0){
 					if(board.getSquare(xLocation - 1, yLocation - 1).hasPiece()){
 						if(board.getSquare(xLocation - 1, yLocation - 1).getPiece().getColor() != color){
-							movePoints[currentPoint] = new Point(xLocation - 1, yLocation - 1);
-							currentPoint++;
+							movedBoard = board.copy();
+							movedBoard.getSquare(xLocation - 1, yLocation - 1).setPiece(this.copy());
+							movedBoard.getSquare(xLocation, yLocation).removePiece();
+							if(!kingThreatened(movedBoard)){
+								movePoints[currentPoint] = new Point(xLocation - 1, yLocation - 1);
+								currentPoint++;
+							}
 						}
 					}
 				}
@@ -394,28 +444,48 @@ public class Pawn implements ChessPiece{
 		}else if(color == 1){
 			if(yLocation < 7){
 				if(board.getSquare(xLocation, yLocation + 1).hasPiece() == false){
-					movePoints[currentPoint] = new Point(xLocation, yLocation + 1);
-					currentPoint++;
+					movedBoard = board.copy();
+					movedBoard.getSquare(xLocation, yLocation + 1).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						movePoints[currentPoint] = new Point(xLocation, yLocation + 1);
+						currentPoint++;
+					}
 					if(yLocation == 1){
 						if(board.getSquare(xLocation, yLocation + 2).hasPiece() == false){
-							movePoints[currentPoint] = new Point(xLocation, yLocation + 2);
-							currentPoint++;
+							movedBoard = board.copy();
+							movedBoard.getSquare(xLocation, yLocation + 2).setPiece(this.copy());
+							movedBoard.getSquare(xLocation, yLocation).removePiece();
+							if(!kingThreatened(movedBoard)){
+								movePoints[currentPoint] = new Point(xLocation, yLocation + 2);
+								currentPoint++;
+							}
 						}
 					}
 				}
 				if(xLocation < 7){
 					if(board.getSquare(xLocation + 1, yLocation + 1).hasPiece()){
 						if(board.getSquare(xLocation + 1, yLocation + 1).getPiece().getColor() != color){
-							movePoints[currentPoint] = new Point(xLocation + 1, yLocation + 1);
-							currentPoint++;
+							movedBoard = board.copy();
+							movedBoard.getSquare(xLocation + 1, yLocation + 1).setPiece(this.copy());
+							movedBoard.getSquare(xLocation, yLocation).removePiece();
+							if(!kingThreatened(movedBoard)){
+								movePoints[currentPoint] = new Point(xLocation + 1, yLocation + 1);
+								currentPoint++;
+							}
 						}
 					}
 				}
 				if(xLocation > 0){
 					if(board.getSquare(xLocation - 1, yLocation + 1).hasPiece()){
 						if(board.getSquare(xLocation - 1, yLocation + 1).getPiece().getColor() != color){
-							movePoints[currentPoint] = new Point(xLocation - 1, yLocation + 1);
-							currentPoint++;
+							movedBoard = board.copy();
+							movedBoard.getSquare(xLocation - 1, yLocation + 1).setPiece(this.copy());
+							movedBoard.getSquare(xLocation, yLocation).removePiece();
+							if(!kingThreatened(movedBoard)){
+								movePoints[currentPoint] = new Point(xLocation - 1, yLocation + 1);
+								currentPoint++;
+							}
 						}
 					}
 				}
@@ -442,5 +512,35 @@ public class Pawn implements ChessPiece{
 	@Override
 	public String getDescription() {
 		return "pawn";
+	}
+	
+	/**
+	 * This will find out if the king is threatened in any given case.  This
+	 * does not strike me as the best way to do things.  Still, whatever
+	 * serves the purpose.
+	 * 
+	 * @param board The board with the layout to be considered.
+	 * @return Whether or not the king is threatened in this layout.
+	 */
+	public boolean kingThreatened(ChessBoard board){
+		King king = null;
+		
+		//First... find the king.
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(board.getSquare(i, j).hasPiece()){
+					if(board.getSquare(i, j).getPiece().getColor() == color && board.getSquare(i, j).getPiece().getDescription().equalsIgnoreCase("king")){
+						king = (King)board.getSquare(i, j).getPiece();
+					}
+				}
+			}
+		}
+		
+		if(king != null){
+			if(king.isThreatened(board, king.getXPosition(), king.getYPosition())){
+				return true;
+			}
+		}
+		return false;
 	}
 }

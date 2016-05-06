@@ -2,8 +2,10 @@ package chess.main;
 
 public class ChessAI {
 	
-	
-	
+	/**
+	 * The constructor method.  Right now, it doesn't actually need to
+	 * do anything.  I could probably turn these into static methods.
+	 */
 	public ChessAI(){
 		
 	}
@@ -24,12 +26,22 @@ public class ChessAI {
 	 */
 	public ChessBoard getNextMove(ChessBoard board, int player){
 		
+		//This gets a list of the pieces, used so that the ai can look at each one
+		//in turn, and examine the possible moves of each.
 		ChessPiece[] pieces = board.getPieces();
 		
+		//Each side has a possible 138 moves.  This assumes a theoretical best case
+		//scenario which probably doesn't exist.  Use the moves array to store
+		//boards with possible moves on them, the currentPieceMoves array to store
+		//the moves of the current piece (28 max for queens) and the currentMove
+		//number to keep track of how many moves you've looked at for the purpose
+		//of keeping track of where in the moves array you're currently looking.
 		ChessBoard[] moves = new ChessBoard[138];
 		ChessBoard[] currentPieceMoves = new ChessBoard[28];
 		int currentMove = 0;
 		
+		//Look at each piece, and for each piece put all possible moves into the
+		//moves array.
 		for(int i = 0; i < pieces.length; i++){
 			if(pieces[i].getColor() == player){
 				currentPieceMoves = pieces[i].getMoves(board);
@@ -40,19 +52,28 @@ public class ChessAI {
 			}
 		}
 		
+		//Clip the moves array to a smaller array where the length is equal to
+		//the number of moves available.
 		ChessBoard[] movesShort = new ChessBoard[currentMove];
 		for(int i = 0; i < currentMove; i++){
 			movesShort[i] = moves[i];
 		}
 		
+		//An array holding the values of the boards, determined heuristically
+		//by the evaluateBoard method.
 		int[] moveValues = new int[movesShort.length];
 		for(int i = 0; i < movesShort.length; i++){
 			moveValues[i] = evaluateBoard(movesShort[i], player);
 		}
 		
+		//The max value known and the index number of the max board known.
+		//Remember, values for boards can be below zero, so initialize the
+		//value to a very large negative number.
 		int maxValue = -1000000000;
 		int maxBoardKnown = 0;
 		
+		//This loop goes through the array of values, and picks out the best
+		//board by max value.
 		for(int i = 0; i < moveValues.length; i++){
 			if(moveValues[i] > maxValue){
 				maxValue = moveValues[i];
@@ -60,6 +81,8 @@ public class ChessAI {
 			}
 		}
 		
+		//Return the best board known.  In the case of ties, this returns the
+		//first board.
 		return movesShort[maxBoardKnown];
 	}
 	
@@ -258,6 +281,24 @@ public class ChessAI {
 		}
 		
 		//This part adds or subtracts values based on what pieces are protected.
+		//Note:  I got rid of this part when I integrated piece protection with
+		//the statements for judging how much it is worth when a piece is
+		//threatened.  I maybe should get rid of the comments too?  In a later
+		//update when I'm cleaning up maybe.
+		
+		//This part is for judging the value of squares adjacent to the king.
+		//This is important in making the ai recognize a checkmate.
+		ChessPiece kingPiece;
+		for(int i = 0; i < pieces.length; i++){
+			if(pieces[i].getDescription().equalsIgnoreCase("king")){
+				if(pieces[i].getColor() == playerColor){
+					
+				}else{
+					
+				}
+			}
+		}
+		
 		
 		return boardValue;
 	}
@@ -533,5 +574,19 @@ public class ChessAI {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Alright, it's time for a slightly more advanced chess algorithm.  This
+	 * one will take the value after it's predicted the enemy's move a few
+	 * steps forwards.  Let's see how this does.
+	 * 
+	 * @param board The board under consideration.
+	 * @param playerColor The color of the player that the board is being
+	 * evaluated for.
+	 * @return An integer value for how good the board is.
+	 */
+	public int advancedEvaluateBoard(ChessBoard board, int playerColor){
+		return 0;
 	}
 }

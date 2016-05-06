@@ -796,4 +796,33 @@ public class King implements ChessPiece{
 		return "king";
 	}
 
+	/**
+	 * This will find out if the king is threatened in any given case.  This
+	 * does not strike me as the best way to do things.  Still, whatever
+	 * serves the purpose.
+	 * 
+	 * @param board The board with the layout to be considered.
+	 * @return Whether or not the king is threatened in this layout.
+	 */
+	public boolean kingThreatened(ChessBoard board){
+		King king = null;
+		
+		//First... find the king.
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(board.getSquare(i, j).hasPiece()){
+					if(board.getSquare(i, j).getPiece().getColor() == color && board.getSquare(i, j).getPiece().getDescription().equalsIgnoreCase("king")){
+						king = (King)board.getSquare(i, j).getPiece();
+					}
+				}
+			}
+		}
+		
+		if(king != null){
+			if(king.isThreatened(board, king.getXPosition(), king.getYPosition())){
+				return true;
+			}
+		}
+		return false;
+	}
 }
