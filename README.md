@@ -9,9 +9,10 @@ Features not implemented: <br />
 3. The AI is still pretty stupid.  Make it look into the future a bit. <br />
 4. Make the game understand when a side has won, so that it can declare the game over. <br />
 5. The AI needs to learn to make a pawn turn into something else when it reaches the far side of the board. <br />
+6. The AI currently doesn't add any score for threatening positions around the enemy king, making it weak in the late game. <br />
 
 Bugs: <br />
-1. When the AI is out of moves, it throws a bunch of nullpointerexceptions and freezes the game. <br />
+1. The game only recognizes when the AI has been beaten.  Lines need to be added for when the AI wins, or when two humans are playing against eachother. <br />
 
 Credits: <br />
 1. I, Benjamin Tyler Becker, wrote most of the code.  I'm quite proud of that. <br />
