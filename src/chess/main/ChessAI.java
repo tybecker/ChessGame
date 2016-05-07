@@ -83,7 +83,11 @@ public class ChessAI {
 		
 		//Return the best board known.  In the case of ties, this returns the
 		//first board.
-		return movesShort[maxBoardKnown];
+		if(movesShort.length == 0){
+			return null;
+		}else{
+			return movesShort[maxBoardKnown];
+		}
 	}
 	
 	/**
@@ -288,7 +292,8 @@ public class ChessAI {
 		
 		//This part is for judging the value of squares adjacent to the king.
 		//This is important in making the ai recognize a checkmate.
-		ChessPiece kingPiece;
+		ChessPiece playerKingPiece;
+		ChessPiece aiKingPiece;
 		for(int i = 0; i < pieces.length; i++){
 			if(pieces[i].getDescription().equalsIgnoreCase("king")){
 				if(pieces[i].getColor() == playerColor){

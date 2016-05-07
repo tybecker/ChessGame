@@ -1,6 +1,7 @@
 package chess.gamestate;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -36,6 +37,7 @@ public class ChessGameState extends GameState{
 	//2: pawn has made it to the far end.
 	//3: castle has been moved into the castling position.
 	//4: it's the ai's turn.
+	//5: The player has won in an ai game.
 	//That's all I have so far, but I have a feeling there will be more.
 	int actionState = 0;
 	
@@ -126,6 +128,10 @@ public class ChessGameState extends GameState{
 			g.setColor(Color.BLACK);
 			g.drawRect(795, 85, 85, 20);
 			g.drawString("Don't Castle", 800, 100);
+		}else if(actionState == 5){
+			g.setColor(Color.GREEN);
+			g.setFont(new Font("Arial", Font.PLAIN, 72));
+			g.drawString("YOU WIN!", 300, 300);
 		}
 	}
 
@@ -347,16 +353,24 @@ public class ChessGameState extends GameState{
 				}else{
 					aiPlayer = 0;
 				}
-				board = ai.getNextMove(board, aiPlayer);
+				if(ai.getNextMove(board, aiPlayer) == null){
+					actionState = 5;
+				}else{
+					board = ai.getNextMove(board, aiPlayer);
+				}
 				if(currentColor == 1){
 					currentColor = 0;
 				}else if(currentColor == 0){
 					currentColor = 1;
 				}
-				actionState = 0;
+				if(actionState != 5){
+					actionState = 0;
+				}
 			}else{
 				actionState = 0;
 			}
+		}else if(actionState == 5){
+			
 		}
 	}
 }
