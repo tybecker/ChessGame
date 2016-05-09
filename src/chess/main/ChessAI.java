@@ -20,7 +20,7 @@ public class ChessAI {
 	 * 
 	 * @param board The board layout being evaluated by the ai
 	 * @param player The color of the player the board is getting the next
-	 * move for.
+	 * move for.  This can be the color of the ai.
 	 * @return A new chessboard, this time with the pieces arranged so that
 	 * one piece has moved.
 	 */
@@ -101,6 +101,9 @@ public class ChessAI {
 	 * @return An integer describing how good the position is for the AI.
 	 */
 	public int evaluateBoard(ChessBoard board, int playerColor){
+
+		//I'm adding a variable for the enemy's color.  It makes it simpler later.
+		int opponentColor = (playerColor + 1)%2;
 		
 		//The final value of the board.
 		int boardValue = 0;
@@ -292,18 +295,135 @@ public class ChessAI {
 		
 		//This part is for judging the value of squares adjacent to the king.
 		//This is important in making the ai recognize a checkmate.
-		ChessPiece playerKingPiece;
-		ChessPiece aiKingPiece;
+		ChessPiece playerKingPiece = null;
+		ChessPiece opponentKingPiece = null;
 		for(int i = 0; i < pieces.length; i++){
 			if(pieces[i].getDescription().equalsIgnoreCase("king")){
 				if(pieces[i].getColor() == playerColor){
-					
+					playerKingPiece = pieces[i];
 				}else{
-					
+					opponentKingPiece = pieces[i];
 				}
 			}
 		}
 		
+		//Now, one by one, evaluate the squares around the kings.
+		if(playerKingPiece != null){
+			if(playerKingPiece.getXPosition() > 0){
+				if(!board.getSquare(playerKingPiece.getXPosition() - 1, playerKingPiece.getYPosition()).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition() - 1, playerKingPiece.getYPosition())){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getXPosition() < 7){
+				if(!board.getSquare(playerKingPiece.getXPosition() + 1, playerKingPiece.getYPosition()).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition() + 1, playerKingPiece.getYPosition())){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getYPosition() > 0){
+				if(!board.getSquare(playerKingPiece.getXPosition(), playerKingPiece.getYPosition() - 1).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition(), playerKingPiece.getYPosition() - 1)){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getYPosition() < 7){
+				if(!board.getSquare(playerKingPiece.getXPosition(), playerKingPiece.getYPosition() + 1).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition(), playerKingPiece.getYPosition() + 1)){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getXPosition() > 0 && playerKingPiece.getYPosition() > 0){
+				if(!board.getSquare(playerKingPiece.getXPosition() - 1, playerKingPiece.getYPosition() - 1).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition() - 1, playerKingPiece.getYPosition() - 1)){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getXPosition() > 0 && playerKingPiece.getYPosition() < 7){
+				if(!board.getSquare(playerKingPiece.getXPosition() - 1, playerKingPiece.getYPosition() + 1).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition() - 1, playerKingPiece.getYPosition() + 1)){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getXPosition() < 7 && playerKingPiece.getYPosition() > 0){
+				if(!board.getSquare(playerKingPiece.getXPosition() + 1, playerKingPiece.getYPosition() - 1).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition() + 1, playerKingPiece.getYPosition() - 1)){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+			if(playerKingPiece.getXPosition() < 7 && playerKingPiece.getYPosition() < 7){
+				if(!board.getSquare(playerKingPiece.getXPosition() + 1, playerKingPiece.getYPosition() + 1).hasPiece()){
+					if(isThreatened(board, playerColor, playerKingPiece.getXPosition() + 1, playerKingPiece.getYPosition() + 1)){
+						boardValue = boardValue - kingAdjacentThreatened;
+					}
+				}
+			}
+		}
+		if(opponentKingPiece != null){
+			if(opponentKingPiece.getXPosition() > 0){
+				if(!board.getSquare(opponentKingPiece.getXPosition() - 1, opponentKingPiece.getYPosition()).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition() - 1, opponentKingPiece.getYPosition())){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getXPosition() < 7){
+				if(!board.getSquare(opponentKingPiece.getXPosition() + 1, opponentKingPiece.getYPosition()).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition() + 1, opponentKingPiece.getYPosition())){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getYPosition() > 0){
+				if(!board.getSquare(opponentKingPiece.getXPosition(), opponentKingPiece.getYPosition() - 1).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition(), opponentKingPiece.getYPosition() - 1)){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getYPosition() < 7){
+				if(!board.getSquare(opponentKingPiece.getXPosition(), opponentKingPiece.getYPosition() + 1).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition(), opponentKingPiece.getYPosition() + 1)){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getXPosition() > 0 && opponentKingPiece.getYPosition() > 0){
+				if(!board.getSquare(opponentKingPiece.getXPosition() - 1, opponentKingPiece.getYPosition() - 1).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition() - 1, opponentKingPiece.getYPosition() - 1)){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getXPosition() > 0 && opponentKingPiece.getYPosition() < 7){
+				if(!board.getSquare(opponentKingPiece.getXPosition() - 1, opponentKingPiece.getYPosition() + 1).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition() - 1, opponentKingPiece.getYPosition() + 1)){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getXPosition() < 7 && opponentKingPiece.getYPosition() > 0){
+				if(!board.getSquare(opponentKingPiece.getXPosition() + 1, opponentKingPiece.getYPosition() - 1).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition() + 1, opponentKingPiece.getYPosition() - 1)){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+			if(opponentKingPiece.getXPosition() < 7 && opponentKingPiece.getYPosition() < 7){
+				if(!board.getSquare(opponentKingPiece.getXPosition() + 1, opponentKingPiece.getYPosition() + 1).hasPiece()){
+					if(isThreatened(board, opponentColor, opponentKingPiece.getXPosition() + 1, opponentKingPiece.getYPosition() + 1)){
+						boardValue = boardValue + kingAdjacentThreatened;
+					}
+				}
+			}
+		}
 		
 		return boardValue;
 	}
