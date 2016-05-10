@@ -98,6 +98,13 @@ public class Pawn implements ChessPiece{
 						moveSet[currentMove] = movedBoard;
 						currentMove++;
 					}
+					movedBoard = board.copy();
+					movedBoard.getSquare(xLocation, yLocation - 1).setPiece(new Queen(color, xLocation, yLocation - 1));
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
 				}else{
 					movedBoard = board.copy();
 					movedBoard.getSquare(xLocation, yLocation - 1).setPiece(this.copy());
@@ -131,6 +138,13 @@ public class Pawn implements ChessPiece{
 							moveSet[currentMove] = movedBoard;
 							currentMove++;
 						}
+						movedBoard = board.copy();
+						movedBoard.getSquare(xLocation - 1, yLocation - 1).setPiece(new Queen(color, xLocation - 1, yLocation - 1));
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation - 1, yLocation - 1).setPiece(this.copy());
@@ -156,6 +170,13 @@ public class Pawn implements ChessPiece{
 							moveSet[currentMove] = movedBoard;
 							currentMove++;
 						}
+						movedBoard = board.copy();
+						movedBoard.getSquare(xLocation + 1, yLocation - 1).setPiece(new Queen(color, xLocation + 1, yLocation - 1));
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation + 1, yLocation - 1).setPiece(this.copy());
@@ -174,6 +195,13 @@ public class Pawn implements ChessPiece{
 				if(yLocation == 6){
 					movedBoard = board.copy();
 					movedBoard.getSquare(xLocation, yLocation + 1).setPiece(this.copy());
+					movedBoard.getSquare(xLocation, yLocation).removePiece();
+					if(!kingThreatened(movedBoard)){
+						moveSet[currentMove] = movedBoard;
+						currentMove++;
+					}
+					movedBoard = board.copy();
+					movedBoard.getSquare(xLocation, yLocation + 1).setPiece(new Queen(color, xLocation, yLocation + 1));
 					movedBoard.getSquare(xLocation, yLocation).removePiece();
 					if(!kingThreatened(movedBoard)){
 						moveSet[currentMove] = movedBoard;
@@ -210,6 +238,13 @@ public class Pawn implements ChessPiece{
 							moveSet[currentMove] = movedBoard;
 							currentMove++;
 						}
+						movedBoard = board.copy();
+						movedBoard.getSquare(xLocation - 1, yLocation + 1).setPiece(new Queen(color, xLocation - 1, yLocation + 1));
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
 					}else{
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation - 1, yLocation + 1).setPiece(this.copy());
@@ -228,6 +263,13 @@ public class Pawn implements ChessPiece{
 					if(yLocation == 6){
 						movedBoard = board.copy();
 						movedBoard.getSquare(xLocation + 1, yLocation + 1).setPiece(this.copy());
+						movedBoard.getSquare(xLocation, yLocation).removePiece();
+						if(!kingThreatened(movedBoard)){
+							moveSet[currentMove] = movedBoard;
+							currentMove++;
+						}
+						movedBoard = board.copy();
+						movedBoard.getSquare(xLocation + 1, yLocation + 1).setPiece(new Queen(color, xLocation + 1, yLocation + 1));
 						movedBoard.getSquare(xLocation, yLocation).removePiece();
 						if(!kingThreatened(movedBoard)){
 							moveSet[currentMove] = movedBoard;

@@ -712,6 +712,10 @@ public class ChessAI {
 	 * @return An integer value for how good the board is.
 	 */
 	public int advancedEvaluateBoard(ChessBoard board, int playerColor){
+		
+		
+
+		
 		return 0;
 	}
 }
